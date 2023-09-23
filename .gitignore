@@ -1,0 +1,8 @@
+.vscode
+.DS_Store
+.directory
+Thumbs.db
+
+fixers/*
+!fixers/fixer.example.ts
+out
