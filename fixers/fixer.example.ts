@@ -19,7 +19,7 @@ export async function run(from: Platform, to: Platform) {
   // Manipulations here. Do whatever you need.
   config.SomePath = swapWinePaths(from, to, config.SomePath);
 
-  // Return your fixed config, hopefully serializable since this will get fed
-  // into a `JSON.strinfigy` call for writing back to disk
+  // Return your fixed config, either as a string or as a serializable object
+  // to be fed into `JSON.stringify()`
   return config;
 }
