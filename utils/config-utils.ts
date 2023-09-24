@@ -2,10 +2,14 @@ import { platform } from './platform-check.ts';
 import { HOME, innerUserPath, launcherDataPath, outerUserPath } from './path-defs.ts';
 import type { Platform } from '../types.d.ts';
 
-export async function importJsonConfig(path: string) {
-  const contents = await Deno.readTextFile(
+export async function readConfig(path: string) {
+  return await Deno.readTextFile(
     `${HOME}/${launcherDataPath[platform()]}/pluginConfigs/${path}`,
   );
+}
+
+export async function importJsonConfig(path: string) {
+  const contents = await readConfig(path);
 
   return JSON.parse(contents);
 }
