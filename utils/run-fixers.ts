@@ -42,13 +42,18 @@ export async function runFixers(from: Platform, to: Platform, outDir: string) {
       const target = `${outDir}/${filename}`;
       await ensurePath(target);
 
-      if (typeof config === 'string') {
-        await Deno.writeTextFile(target, config);
-      } else {
-        await writeJsonConfig(target, config);
-      }
+      // Only try to write if the returned config is truthy
+      // Do remember that empty arrays and objects are considered truthy, e.g.
+      // `Boolean({}) === Boolean([]) === true`
+      if (config) {
+        if (typeof config === 'string') {
+          await Deno.writeTextFile(target, config);
+        } else {
+          await writeJsonConfig(target, config);
+        }
 
-      console.log(`Wrote file ${bold(magenta(target))}`);
+        console.log(`Wrote file ${bold(magenta(target))}`);
+      }
     }
   }
 }
