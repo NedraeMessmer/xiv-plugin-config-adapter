@@ -25,9 +25,11 @@ function swapInnerPaths(from: Platform, to: Platform, path: string) {
 }
 
 function swapOuterPaths(from: Platform, to: Platform, path: string) {
+  const launcherPathFromWithBackslash = launcherDataPath[from].replace(/\//g, '\\');
+
   return path
     .replace(outerUserPath[from], outerUserPath[to])
-    .replace(launcherDataPath[from], launcherDataPath[to])
+    .replace(launcherPathFromWithBackslash, launcherDataPath[to])
     .replace(/\//g, '\\');
 }
 
