@@ -41,7 +41,12 @@ export async function runFixers(from: Platform, to: Platform, outDir: string) {
 
       const target = `${outDir}/${filename}`;
       await ensurePath(target);
-      await writeJsonConfig(target, config);
+
+      if (typeof config === 'string') {
+        await Deno.writeTextFile(target, config);
+      } else {
+        await writeJsonConfig(target, config);
+      }
 
       console.log(`Wrote file ${bold(magenta(target))}`);
     }
