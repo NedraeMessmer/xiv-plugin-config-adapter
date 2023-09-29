@@ -3,7 +3,7 @@ import { os as _os } from '../deps.ts';
 const os = _os.default;
 
 export const HOME = os.homeDir();
-const USER = Deno.env.get('USER');
+export const USER = Deno.env.get('USER');
 
 export const launcherDataPath = {
   linux: '.xlcore',

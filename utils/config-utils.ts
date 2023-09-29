@@ -38,9 +38,6 @@ function swapOuterPaths(from: Platform, to: Platform, path: string) {
 }
 
 export function swapWinePaths(from: Platform, to: Platform, path: string) {
-  console.log('---');
-  console.log(`Before: ${path}`);
-
   let result = '';
   if (isInnerWinePath(path)) {
     result = swapInnerPaths(from, to, path);
@@ -48,6 +45,5 @@ export function swapWinePaths(from: Platform, to: Platform, path: string) {
     result = swapOuterPaths(from, to, path);
   }
 
-  console.log(`After:  ${result}`);
   return result;
 }
